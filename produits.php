@@ -4,7 +4,7 @@
     <!-- Product search bar -->
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="<?php echo SITEURL; ?>" method="POST" class="form-inline">
+            <form action="<?php echo SITEURL; ?>produits-search.php" method="POST" class="form-inline">
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Recherche de produits...">
                     <div class="input-group-append">

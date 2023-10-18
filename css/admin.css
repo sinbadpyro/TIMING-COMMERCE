@@ -110,3 +110,30 @@ td {
 .Products{
     background-color: #20bf6b !important;
 }
+
+/**CAROUSEL**/
+.carousel-item-inner {
+    display: flex;
+}
+
+.carousel-item-inner img {
+    width: 60%;
+    /* Each image takes up 33.33% of the carousel width */
+    margin: 3px;
+    /* Add some margin for spacing */
+}
+
+#multi-image-carousel {
+    max-height: 300px !important;
+    /* Adjust this value to change the height */
+}
+
+/* Custom CSS for carousel control arrows */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #2ed573;
+    padding: 1em;
+
+    /* Set the color of the arrows */
+}
+

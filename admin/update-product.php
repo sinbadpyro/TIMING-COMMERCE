@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // SQL query to get selected product
-    $sql2 = "SELECT * FROM produits WHERE id=$id";
+    $sql2 = "SELECT * FROM produits WHERE id = $id";
 
     // Execute the query
     $res2 = mysqli_query($conn, $sql2);
@@ -135,92 +135,67 @@ if (isset($_GET['id'])) {
             // Get all the details from the form
             $id = $_POST['id'];
             $titre = $_POST['titre'];
-            $description = $_POST['description'];
+            $description = mysqli_real_escape_string($conn, $_POST['description']); // Sanitize the description
             $prix = $_POST['prix'];
             $current_image = $_POST['current_image'];
             $category = $_POST['category_id'];
             $featured = isset($_POST['featured']) ? $_POST['featured'] : "No";
             $active = isset($_POST['active']) ? $_POST['active'] : "No";
 
-            // Upload the image if selected
             if (isset($_FILES['image']['name'])) {
-                // Image upload button clicked
-                $image_name = $_FILES['image']['name']; // New image name
-                // Check whether the file is available
+                $image_name = $_FILES['image']['name'];
+
                 if ($image_name != "") {
-                    // Image is available
-                    // Rename the image
                     $ext = pathinfo($image_name, PATHINFO_EXTENSION);
-                    // Gets the extension of the file
+                    $image_name = "Food-Name-" . rand(0000, 9999) . '.' . $ext;
+                    $src_path = $_FILES['image']['tmp_name'];
+                    $dest_path = "../img/food/" . $image_name;
 
-                    $image_name = "Food-Name-" . rand(0000, 9999) . '.' . $ext; // This will be the renamed image
-
-                    // Get the source path and destination path
-                    $src_path = $_FILES['image']['tmp_name']; // Source path
-                    $dest_path = "../img/food/" . $image_name; // Destination path
-
-                    // Upload the image
                     $upload = move_uploaded_file($src_path, $dest_path);
 
-                    // Check whether the image is uploaded or not
                     if (!$upload) {
-                        // Failed to upload the image
                         $_SESSION['upload'] = "<div class='error'>Failed to upload the new Image.</div>";
-                        // Redirect to manage Products
                         header('location:' . SITEURL . 'admin/manage-products.php');
-                        // Stop the process
                         die();
                     }
 
-                    // Remove the current image if it exists
                     if ($current_image !== "") {
-                        // Current image is available
                         $remove_path = "../img/food/" . $current_image;
 
-                        // Check if the file exists before attempting to delete it
                         if (file_exists($remove_path)) {
                             $remove = unlink($remove_path);
-                            // Check whether the image is removed or not
+
                             if ($remove == false) {
-                                // Failed to remove the current image
                                 $_SESSION['remove-failed'] = "<div class='error'>Failed to remove the current Image.</div>";
-                                // Redirect to manage Products
                                 header('location:' . SITEURL . 'admin/manage-products.php');
-                                // Stop the process
                                 die();
                             }
-                        } else {
-                            // The image file doesn't exist, so there's no need to delete it.
                         }
                     }
                 } else {
-                    // No new image was uploaded, so keep the current image name
                     $image_name = $current_image;
                 }
             }
 
-            // Update the product in the database
+            // Use prepared statements to update the product
             $sql3 = "UPDATE produits SET
-            titre = '$titre',
-            description = '$description',
-            prix = $prix,
-            nom_de_image = '$image_name',
-            id_categorie = $category,
-            featured = '$featured',
-            active = '$active'
-            WHERE id=$id";
+            titre = ?,
+            description = ?,
+            prix = ?,
+            nom_de_image = ?,
+            id_categorie = ?,
+            featured = ?,
+            active = ?
+            WHERE id = ?";
 
-            // Execute the SQL Query
-            $res3 = mysqli_query($conn, $sql3);
+            $stmt = mysqli_prepare($conn, $sql3);
+            mysqli_stmt_bind_param($stmt, "ssdssssi", $titre, $description, $prix, $image_name, $category, $featured, $active, $id);
 
-            // Check whether the query is executed or not
-            if ($res3 == true) {
-                // Query executed and Product updated successfully
+            if (mysqli_stmt_execute($stmt)) {
                 $_SESSION['update'] = "<div class='success'>Product Updated Successfully.</div>";
                 header('location:' . SITEURL . 'admin/manage-products.php');
             } else {
-                // Failed to update Product
-                $_SESSION['update'] = "<div class='error'>Failed to update Product.</div>";
+                $_SESSION['update'] = "<div class='error'>Failed to update Product: " . mysqli_error($conn) . "</div>";
                 header('location:' . SITEURL . 'admin/manage-products.php');
             }
         }

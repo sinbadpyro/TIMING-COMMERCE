@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.fa-solid{
+    display: block;
+    width: 3em;
+    height: 25px;
+}
+
+

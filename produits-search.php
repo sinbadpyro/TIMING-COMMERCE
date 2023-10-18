@@ -15,6 +15,7 @@
 
     <!-- Liste des produits -->
     <h1 class="text-center m-4">Menu des produits</h1>
+    <div class="row justify-content-center text-center m-3">
     <?php
     $search = $_POST['search'];
     //Display Products that the user searched for
@@ -35,10 +36,9 @@
             $description = $row['description'];
             $prix = $row['prix'];
             $image_name = $row['nom_de_image'];
-    ?>
-
-            <div class="row justify-content-center text-center m-3">
-                <div class="card m-3 p-0 col-lg-3 col-md-5 col-12">
+    ?>   
+                <div class="col-lg-4 col-md-5 col-12">
+                    <div class="card m-3 p-0 ">
                     <?php
                     //CHeck whether image available or not
                     if ($image_name == "") {
@@ -54,7 +54,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $titre; ?></h5>
-                        <p class="card-text">
+                        <p class="card-text" style="height: 100px; overflow:auto;">
                             <?php echo $description; ?>
                         </p>
                         <a href="#" class="btn btn-success">Commander</a>
@@ -68,6 +68,7 @@
         echo "<div class='error text-center'>Pas de Produits.</div>";
     }
     ?>
+    </div>
 </section>
 
 <?php include('./partials-front/footer.php'); ?>

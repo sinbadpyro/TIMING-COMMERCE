@@ -27,7 +27,8 @@ include('../admin/partials/menu.php'); ?>
 
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <textarea cols="30" rows="5" class="form-control" name="description" placeholder="Description du Produits"></textarea>
+                <textarea cols="30" rows="5" class="form-control" name="description"
+                    placeholder="Description du Produits"></textarea>
             </div>
 
 
@@ -65,17 +66,19 @@ include('../admin/partials/menu.php'); ?>
                             $id = $row['id'];
                             $titre = $row['titre'];
 
-                    ?>
+                            ?>
 
-                            <option value="<?php echo $id; ?>"><?php echo $titre; ?></option>
+                            <option value="<?php echo $id; ?>">
+                                <?php echo $titre; ?>
+                            </option>
 
-                        <?php
+                            <?php
                         }
                     } else {
                         //WE do not have category
                         ?>
                         <option value="0">No Category Found</option>
-                    <?php
+                        <?php
                     }
 
 
@@ -104,96 +107,62 @@ include('../admin/partials/menu.php'); ?>
 
         //CHeck whether the button is clicked or not
         if (isset($_POST['submit'])) {
-            //Add the Product in Database
-            //echo "Clicked";
-
-            //1. Get the DAta from Form
+            // Add the Product in the Database
+            // ...
+        
+            // Get the Data from the Form
             $titre = $_POST['titre'];
-            $description = $_POST['description'];
+            $description = addslashes($_POST['description']); // Handle special characters
             $prix = $_POST['prix'];
             $category = $_POST['categories_de_produits'];
-
-            //Check whether radion button for featured and active are checked or not
             if (isset($_POST['featured'])) {
                 $featured = $_POST['featured'];
             } else {
-                $featured = "No"; //SEtting the Default Value
+                $featured = "No"; // Setting the Default Value
             }
 
-            if (isset($_POST['active'])) {
-                $active = $_POST['active'];
-            } else {
-                $active = "No"; //Setting Default Value
-            }
+            $active = (isset($_POST['active'])) ? $_POST['active'] : "No";
 
-            //2. Upload the Image if selected
-            //Check whether the select image is clicked or not and upload the image only if the image is selected
+            // Upload the Image if selected
             if (isset($_FILES['image']['name'])) {
-                //Get the details of the selected image
                 $image_name = $_FILES['image']['name'];
-
-                //Check Whether the Image is Selected or not and upload image only if selected
                 if ($image_name != "") {
-                    // Image is SElected
-                    //A. REnamge the Image
-                    //Get the extension of selected image (jpg, png, gif, etc.) "vijay-thapa.jpg" vijay-thapa jpg
+                    // Image is Selected
                     $image_parts = explode('.', $image_name);
                     $ext = end($image_parts);
-
-                    // Create New Name for Image
-                    $image_name = "Food-Name-" . rand(0000, 9999) . "." . $ext; //New Image Name May Be "Food-Name-657.jpg"
-
-                    //B. Upload the Image
-                    //Get the Src Path and DEstinaton path
-
-                    // Source path is the current location of the image
+                    $image_name = "Food-Name-" . rand(0000, 9999) . "." . $ext;
                     $src = $_FILES['image']['tmp_name'];
-
-                    //Destination Path for the image to be uploaded
                     $dst = "../img/food/" . $image_name;
 
-                    //Finally Uppload the food image
                     $upload = move_uploaded_file($src, $dst);
 
-                    //check whether image uploaded of not
                     if ($upload == false) {
-                        //Failed to Upload the image
-                        //REdirect to Add Food Page with Error Message
                         $_SESSION['upload'] = "<div class='error'>Failed to Upload Image.</div>";
                         header('location:' . SITEURL . 'admin/add-product.php');
-                        //STop the process
                         die();
                     }
                 }
             } else {
-                $image_name = ""; //SEtting DEfault Value as blank
+                $image_name = ""; // Set Default Value as blank
             }
 
-            //3. Insert Into Database
+            // Use prepared statements to insert data into the database
+            $sql = "INSERT INTO produits (titre, description, prix, id_categorie, nom_de_image, featured, active)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            //Create a SQL Query to Save or Add food
-            // For Numerical we do not need to pass value inside quotes '' But for string value it is compulsory to add quotes ''
-            $sql2 = "INSERT INTO produits SET 
-            titre = '$titre',
-            description = '$description',
-            prix = $prix,
-            id_categorie = $category,  -- Corrected column name here
-            nom_de_image = '$image_name',
-            featured = '$featured',
-            active = '$active'
-        ";
+            $stmt = mysqli_prepare($conn, $sql);
 
+            // Bind parameters
+            mysqli_stmt_bind_param($stmt, 'ssdisss', $titre, $description, $prix, $category, $image_name, $featured, $active);
 
-            $res2 = mysqli_query($conn, $sql2);
-
-            if ($res2) {
+            if (mysqli_stmt_execute($stmt)) {
                 // Data inserted successfully
                 $_SESSION['add'] = "<div class='success'>Product Added Successfully.</div>";
                 header('location: ' . SITEURL . 'admin/manage-products.php');
             } else {
-                // Failed to insert data, display the MySQL error message
-                $_SESSION['add'] = "<div class='error'>Failed to Add Product. Error: " . mysqli_error($conn) . "</div>";
-                header('location: ' . SITEURL . 'admin/add-product.php'); // Redirect back to the add-food page to see the error message
+                // Failed to insert data
+                $_SESSION['add'] = "<div class='error'>Failed to Add Product: " . mysqli_error($conn) . "</div>";
+                header('location: ' . SITEURL . 'admin/manage-products.php');
                 die(); // Stop further processing
             }
         }

@@ -34,10 +34,10 @@
 
         ?>
         <br> <br>
-
-        <div class="table-responsive">
+        
+        <div class="table-responsive" style="height: 400px;">
             <table class="table table-responsive table-bordered border-dark table-hover text-center">
-                <thead class="table-dark table-active text-uppercase">
+                <thead class="table-dark table-active text-uppercase sticky-top">
                     <tr>
                         <th>S.N.</th>
                         <th>Titre</th>
@@ -130,6 +130,7 @@
 
             </table>
         </div>
+        
     </div>
 </div>
 <!--END OF MAIN CONTENT-->
