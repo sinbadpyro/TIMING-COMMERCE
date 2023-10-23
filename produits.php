@@ -38,6 +38,7 @@
                 $description = $row['description'];
                 $prix = $row['prix'];
                 $image_name = $row['nom_de_image'];
+                $link = $row['links'];
         ?>
         <div class="card m-3 p-0 col-lg-3 col-md-4 col-sm-8 col-12">
             <?php
@@ -58,7 +59,9 @@
                 <p class="card-text">
                     <?php echo $description; ?>
                 </p>
+                <a href="<?php echo $link; ?>" target="_blank" class="btn btn-primary">Voir Plus</a>
                 <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
+                <!--HERE IS WHERE I WANT TO PUT THE BUTTON-->
             </div>
         </div>
         <?php

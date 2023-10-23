@@ -26,6 +26,7 @@ if (isset($_GET['id'])) {
     $current_category = $row2['id_categorie'];
     $featured = $row2['featured'];
     $active = $row2['active'];
+    $link = $row2['links'];
 } else {
     // Redirect to manage product
     header('location: ' . SITEURL . 'admin/manage-products.php');
@@ -124,6 +125,12 @@ if (isset($_GET['id'])) {
                 <input type="radio" name="active" value="No" <?php if ($active == "No") echo "checked"; ?>>Non
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">Entrer le lien starmat pour ce Produit</label>
+                <input type="url" id="website" name="website" value="<?php echo $link; ?>" placeholder="https://www.starmat.com" required>
+                <div class="form-text">Veuillez entrer un lien</div>
+            </div>
+
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <input type="hidden" name="current_image" value="<?php echo $current_image; ?>">
             <input class="btn btn-success" type="submit" value="Modifier" name="submit">
@@ -137,6 +144,7 @@ if (isset($_GET['id'])) {
             $titre = $_POST['titre'];
             $description = mysqli_real_escape_string($conn, $_POST['description']); // Sanitize the description
             $prix = $_POST['prix'];
+            $link = $_POST['website'];
             $current_image = $_POST['current_image'];
             $category = $_POST['category_id'];
             $featured = isset($_POST['featured']) ? $_POST['featured'] : "No";
@@ -185,11 +193,13 @@ if (isset($_GET['id'])) {
             nom_de_image = ?,
             id_categorie = ?,
             featured = ?,
-            active = ?
+            active = ?,
+            links = ?
             WHERE id = ?";
 
             $stmt = mysqli_prepare($conn, $sql3);
-            mysqli_stmt_bind_param($stmt, "ssdssssi", $titre, $description, $prix, $image_name, $category, $featured, $active, $id);
+            mysqli_stmt_bind_param($stmt, "ssdsssssi", $titre, $description, $prix, $image_name, $category, $featured, $active, $link, $id);
+
 
             if (mysqli_stmt_execute($stmt)) {
                 $_SESSION['update'] = "<div class='success'>Product Updated Successfully.</div>";

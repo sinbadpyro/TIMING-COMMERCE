@@ -88,6 +88,12 @@ include('../admin/partials/menu.php'); ?>
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Entrer le lien starmat pour ce Produit</label>
+                <input type="url" id="website" name="website" placeholder="https://www.starmat.com" required>
+                <div class="form-text">Veuillez entrer un lien</div>
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Featured</label>
                 <input type="radio" name="featured" value="Yes">Yes
                 <input type="radio" name="featured" value="No">No
@@ -97,6 +103,7 @@ include('../admin/partials/menu.php'); ?>
                 <input type="radio" name="active" value="Yes">Yes
                 <input type="radio" name="active" value="No">No
             </div>
+
 
 
             <input class="btn btn-success" type="submit" value="Ajout Produits" name="submit">
@@ -114,6 +121,7 @@ include('../admin/partials/menu.php'); ?>
             $titre = $_POST['titre'];
             $description = addslashes($_POST['description']); // Handle special characters
             $prix = $_POST['prix'];
+            $link = $_POST['website'];
             $category = $_POST['categories_de_produits'];
             if (isset($_POST['featured'])) {
                 $featured = $_POST['featured'];
@@ -147,13 +155,13 @@ include('../admin/partials/menu.php'); ?>
             }
 
             // Use prepared statements to insert data into the database
-            $sql = "INSERT INTO produits (titre, description, prix, id_categorie, nom_de_image, featured, active)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO produits (titre, description, prix, id_categorie, nom_de_image, featured, active, links)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = mysqli_prepare($conn, $sql);
 
             // Bind parameters
-            mysqli_stmt_bind_param($stmt, 'ssdisss', $titre, $description, $prix, $category, $image_name, $featured, $active);
+            mysqli_stmt_bind_param($stmt, 'ssdisss', $titre, $description, $prix, $category, $image_name, $featured, $active, $link);
 
             if (mysqli_stmt_execute($stmt)) {
                 // Data inserted successfully

@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
     <link rel="stylesheet" href="css/admin.css" type="text/css">
     <link rel="stylesheet" href="../styles.css">
     <title>ECOMATERIAUX</title>
@@ -41,7 +41,7 @@
                         <li class="nav-item"><a a href="<?php echo SITEURL; ?>" class="nav-link link-style text-light">ACCEUIL</a></li>
                         <li class="nav-item"><a href="<?php echo SITEURL; ?>categories.php" class="nav-link link-style  text-light">CATEGORIES</a></li>
                         <li class="nav-item"><a href="<?php echo SITEURL; ?>produits.php" class="nav-link  link-style text-light">PRODUITS</a></li>
-                        <li class="nav-item"><a href="manage-orders.php" class="nav-link link-style  text-light">COMMANDES</a></li>
+
 
 
                     </ul>

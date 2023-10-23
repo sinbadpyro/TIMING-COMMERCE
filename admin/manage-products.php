@@ -75,6 +75,7 @@
                             $image_name = $row['nom_de_image'];
                             $featured = $row['featured'];
                             $active = $row['active'];
+                          
 
                     ?>
 
