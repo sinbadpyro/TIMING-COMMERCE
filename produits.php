@@ -1,5 +1,11 @@
 <?php include('./partials-front/menu.php'); ?>
 
+<!--- This is the back button--->
+<a href="javascript:history.go(-1)" class="btn btn-primary mt-3 ms-5" id="back-button">
+                <span class="glyphicon glyphicon-arrow-left"></span> Retour
+            </a>
+             <!--- End of the back button--->
+
 <section class="container my-5">
     <!-- Product search bar -->
     <div class="row justify-content-center">

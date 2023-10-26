@@ -2,7 +2,14 @@
 
 <!-- Categories Section Starts Here -->
 <section>
+    
+            <!--- This is the back button--->
+            <a href="javascript:history.go(-1)" class="btn btn-primary mt-3 ms-5" id="back-button">
+                <span class="glyphicon glyphicon-arrow-left"></span> Retour 
+            </a>
+             <!--- End of the back button--->
     <div class="container">
+       
         <h1 class="text-center m-4">Explorer les catégories</h1>
         <div class="row text-center m-3">
 
