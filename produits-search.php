@@ -30,9 +30,9 @@
 
     //Count Rows
     $count = mysqli_num_rows($res);
-    //CHeck whether the foods are availalable or not
+    //CHeck whether the products are availalable or not
     if ($count > 0) {
-        //Foods Available
+        //Products Available
         while ($row = mysqli_fetch_assoc($res)) {
             //Get the Values
             $id = $row['id'];
@@ -68,7 +68,7 @@
     <?php
         }
     } else {
-        //Food not Available
+        //Product not Available
         echo "<div class='error text-center'>Pas de Produits.</div>";
     }
     ?>

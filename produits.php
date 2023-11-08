@@ -25,7 +25,7 @@
     <h1 class="text-center m-4">Menu des produits</h1>
     <div class="row justify-content-center text-center m-3">
         <?php
-        // Display Foods that are Active
+        // Display Products that are Active
         $sql = "SELECT * FROM produits WHERE active='Yes'";
         
         // Execute the Query
@@ -34,9 +34,9 @@
         // Count Rows
         $count = mysqli_num_rows($res);
         
-        // Check whether the foods are available or not
+        // Check whether the Products are available or not
         if ($count > 0) {
-            // Foods Available
+            // Products Available
             while ($row = mysqli_fetch_assoc($res)) {
                 // Get the Values
                 $id = $row['id'];
@@ -66,14 +66,14 @@
                     <?php echo $description; ?>
                 </p>
                 <a href="<?php echo $link; ?>" target="_blank" class="btn btn-primary">Voir Plus</a>
-                <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
+                <a href="<?php echo SITEURL; ?>order.php?product_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
                 <!--HERE IS WHERE I WANT TO PUT THE BUTTON-->
             </div>
         </div>
         <?php
             }
         } else {
-            // Food not Available
+            // Products not Available
             echo "<div class='error text-center'>Pas de Produits.</div>";
         }
         ?>

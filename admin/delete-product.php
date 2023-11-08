@@ -2,7 +2,7 @@
 //Include COnstants Page
 include('../config/constants.php');
 
-//echo "Delete Food Page";
+//echo "Delete Product Page";
 
 if (isset($_GET['id']) && isset($_GET['image_name'])) //Either use '&&' or 'AND'
 {
@@ -27,31 +27,31 @@ if (isset($_GET['id']) && isset($_GET['image_name'])) //Either use '&&' or 'AND'
         if ($remove == false) {
             //Failed to Remove image
             $_SESSION['upload'] = "<div class='error'>Failed to Remove Image File.</div>";
-            //REdirect to Manage Food
+            //REdirect to Manage Product
             header('location:' . SITEURL . 'admin/manage-products.php');
             //Stop the Process of Deleting product
             die();
         }
     }
 
-    //3. Delete Food from Database
+    //3. Delete Product from Database
     $sql = "DELETE FROM produits WHERE id=$id";
     //Execute the Query
     $res = mysqli_query($conn, $sql);
 
     //CHeck whether the query executed or not and set the session message respectively
-    //4. Redirect to Manage Food with Session Message
+    //4. Redirect to ManageProduct with Session Message
     if ($res == true) {
-        //Food Deleted
-        $_SESSION['delete'] = "<div class='success'>Food Deleted Successfully.</div>";
+        //Product Deleted
+        $_SESSION['delete'] = "<div class='success'>Product Deleted Successfully.</div>";
         header('location:' . SITEURL . 'admin/manage-products.php');
     } else {
-        //Failed to Delete Food
-        $_SESSION['delete'] = "<div class='error'>Failed to Delete Food.</div>";
+        //Failed to Delete Product
+        $_SESSION['delete'] = "<div class='error'>Failed to Delete Product.</div>";
         header('location:' . SITEURL . 'admin/manage-products.php');
     }
 } else {
-    //Redirect to Manage Food Page
+    //Redirect to ManageProduct Page
     //echo "REdirect";
     $_SESSION['unauthorize'] = "<div class='error'>Unauthorized Access.</div>";
     header('location:' . SITEURL . 'admin/manage-products.php');

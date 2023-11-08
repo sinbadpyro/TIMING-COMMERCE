@@ -165,7 +165,7 @@ include('../admin/partials/menu.php'); ?>
             $stmt = mysqli_prepare($conn, $sql);
 
             // Bind parameters
-            mysqli_stmt_bind_param($stmt, 'ssdisss', $titre, $description, $prix, $category, $image_name, $featured, $active, $link);
+            mysqli_stmt_bind_param($stmt, 'ssdissss', $titre, $description, $prix, $category, $image_name, $featured, $active, $link);
 
             if (mysqli_stmt_execute($stmt)) {
                 // Data inserted successfully

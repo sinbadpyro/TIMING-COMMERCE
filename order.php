@@ -8,13 +8,13 @@ include('./partials-front/menu.php'); ?>
             </a>
              <!--- End of the back button--->
 <?php
-//CHeck whether food id is set or not
-if (isset($_GET['food_id'])) {
+//CHeck whether product id is set or not
+if (isset($_GET['product_id'])) {
     //Get the Food id and details of the selected food
-    $food_id = $_GET['food_id'];
+    $product_id = $_GET['product_id'];
 
     //Get the DEtails of the SElected Food
-    $sql = "SELECT * FROM produits WHERE id=$food_id";
+    $sql = "SELECT * FROM produits WHERE id=$product_id";
     //Execute the Query
     $res = mysqli_query($conn, $sql);
     //Count the rows
@@ -148,11 +148,11 @@ if (isset($_GET['food_id'])) {
             //Check whether query executed successfully or not
             if ($res2 == true) {
                 //Query Executed and Order Saved
-                $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
+                $_SESSION['order'] = "<div class='success text-center'>Product Ordered Successfully.</div>";
                 header('location:' . SITEURL);
             } else {
                 //Failed to Save Order
-                $_SESSION['order'] = "<div class='error text-center'>Failed to Order Food.</div>";
+                $_SESSION['order'] = "<div class='error text-center'>Failed to Order product.</div>";
                 header('location:' . SITEURL);
             }
         }

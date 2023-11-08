@@ -87,7 +87,7 @@
     <div class="row justify-content-center m-2">
 
         <?php
-        // Display featured food products (limited to 6) that are active
+        // Display featured products (limited to 6) that are active
         $sql = "SELECT * FROM produits WHERE active='Yes' AND featured='Yes' LIMIT 6";
 
         // Execute the query
@@ -127,14 +127,14 @@
                                 <?php echo $description; ?>
                             </p>
                             </div>
-                            <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
+                            <a href="<?php echo SITEURL; ?>order.php?product_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
                         </div>
                     </div>
                 </div>
         <?php
             }
         } else {
-            // Food not Available
+            // Product not Available
             echo "<div class='error text-center'>Pas de Produits.</div>";
         }
         ?>

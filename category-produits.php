@@ -39,13 +39,13 @@ if (isset($_GET['category_id'])) {
     <h1 class="text-center m-4">Menu des produits</h1>
     <div class="row justify-content-center text-center m-3">
         <?php
-        // Display Foods that are Active
+        // Display Products that are Active
         $sql2 = "SELECT * FROM produits WHERE id_categorie=$category_id";
 
         // Execute the Query
         $res = mysqli_query($conn, $sql2);
 
-        // Check whether the foods are available or not
+        // Check whether the products are available or not
         if (mysqli_num_rows($res) > 0) {
             while ($row = mysqli_fetch_assoc($res)) {
                 $id = $row['id'];
@@ -71,7 +71,7 @@ if (isset($_GET['category_id'])) {
                             <p class="card-text" style="height: 100px; overflow:auto;">
                                 <?php echo $description; ?>
                             </p>
-                            <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
+                            <a href="<?php echo SITEURL; ?>order.php?product_id=<?php echo $id; ?>" class="btn btn-success">Commander</a>
                         </div>
                     </div>
                 </div>
