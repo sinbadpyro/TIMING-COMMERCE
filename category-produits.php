@@ -61,7 +61,7 @@ if (isset($_GET['category_id'])) {
                             echo "<div class='error'>Image not Available.</div>";
                         } else {
                         ?>
-                            <img src="<?php echo SITEURL; ?>img/food/<?php echo $image_name; ?>" alt="Produit" class="img-responsive">
+                            <img src="<?php echo SITEURL; ?>img/product/<?php echo $image_name; ?>" alt="Produit" class="img-responsive">
                         <?php
                         }
                         ?>

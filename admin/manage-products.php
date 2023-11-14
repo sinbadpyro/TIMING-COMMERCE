@@ -97,7 +97,7 @@
                                     } else {
                                         //WE Have Image, Display Image
                                     ?>
-                                        <img src="<?php echo SITEURL; ?>img/food/<?php echo $image_name; ?>" width="100px">
+                                        <img src="<?php echo SITEURL; ?>img/product/<?php echo $image_name; ?>" width="100px">
                                     <?php
                                     }
                                     ?>

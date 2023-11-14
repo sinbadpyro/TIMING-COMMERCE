@@ -142,9 +142,9 @@ include('../admin/partials/menu.php'); ?>
                     // Image is Selected
                     $image_parts = explode('.', $image_name);
                     $ext = end($image_parts);
-                    $image_name = "Food-Name-" . rand(0000, 9999) . "." . $ext;
+                    $image_name = "Product-Name-" . rand(0000, 9999) . "." . $ext;
                     $src = $_FILES['image']['tmp_name'];
-                    $dst = "../img/food/" . $image_name;
+                    $dst = "../img/product/" . $image_name;
 
                     $upload = move_uploaded_file($src, $dst);
 

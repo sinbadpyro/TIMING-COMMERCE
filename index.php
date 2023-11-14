@@ -114,7 +114,7 @@
                         } else {
                             // Image Available
                         ?>
-                            <img src="<?php echo SITEURL; ?>img/food/<?php echo $image_name; ?>" alt="Produit" class="img-responsive">
+                            <img src="<?php echo SITEURL; ?>img/product/<?php echo $image_name; ?>" alt="Produit" class="img-responsive"  style="height:220px;">
                         <?php
                         }
                         ?>

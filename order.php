@@ -57,7 +57,7 @@ if (isset($_GET['product_id'])) {
                         } else {
                             //image is available
                         ?>
-                            <img src="<?php echo SITEURL; ?>/img/food/<?php echo $image_name; ?>" alt="Ecomateriaux" class="img-fluid rounded">
+                            <img src="<?php echo SITEURL; ?>/img/product/<?php echo $image_name; ?>" alt="Ecomateriaux" class="img-fluid rounded">
                         <?php
                         }
                         ?>

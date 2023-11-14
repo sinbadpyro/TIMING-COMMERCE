@@ -90,7 +90,7 @@
 
 
                 //rename the image
-                $image_name = "Food_Category_" . rand(000, 999) . '.' . $ext;
+                $image_name = "Product_Category_" . rand(000, 999) . '.' . $ext;
                 $source_path = $_FILES['image']['tmp_name'];
                 $destination_path = "../img/category/" . $image_name;
 

@@ -1,58 +1,34 @@
 <?php
-//Include COnstants Page
+// Include Constants Page
 include('../config/constants.php');
 
-//echo "Delete Product Page";
-
-if (isset($_GET['id']) && isset($_GET['image_name'])) //Either use '&&' or 'AND'
-{
-    //Process to Delete
-    //echo "Process to Delete";
-
-    //1.  Get ID and Image NAme
+// Check if 'id' and 'image_name' are set in the URL
+if (isset($_GET['id']) && isset($_GET['image_name'])) {
+    // Get ID and Image Name
     $id = $_GET['id'];
     $image_name = $_GET['image_name'];
 
-    //2. Remove the Image if Available
-    //CHeck whether the image is available or not and Delete only if available
-    if ($image_name != "") {
-        // IT has image and need to remove from folder
-        //Get the Image Path
-        $path = "../img/food/" . $image_name;
+    // Remove the Image File if it exists
+    $path = "../img/product/" . $image_name;
+    unlink($path);
 
-        //REmove Image File from Folder
-        $remove = unlink($path);
-
-        //Check whether the image is removed or not
-        if ($remove == false) {
-            //Failed to Remove image
-            $_SESSION['upload'] = "<div class='error'>Failed to Remove Image File.</div>";
-            //REdirect to Manage Product
-            header('location:' . SITEURL . 'admin/manage-products.php');
-            //Stop the Process of Deleting product
-            die();
-        }
-    }
-
-    //3. Delete Product from Database
+    // Delete Product from Database
     $sql = "DELETE FROM produits WHERE id=$id";
-    //Execute the Query
     $res = mysqli_query($conn, $sql);
 
-    //CHeck whether the query executed or not and set the session message respectively
-    //4. Redirect to ManageProduct with Session Message
+    // Check if the query executed successfully
     if ($res == true) {
-        //Product Deleted
+        // Product Deleted
         $_SESSION['delete'] = "<div class='success'>Product Deleted Successfully.</div>";
-        header('location:' . SITEURL . 'admin/manage-products.php');
     } else {
-        //Failed to Delete Product
+        // Failed to Delete Product
         $_SESSION['delete'] = "<div class='error'>Failed to Delete Product.</div>";
-        header('location:' . SITEURL . 'admin/manage-products.php');
     }
 } else {
-    //Redirect to ManageProduct Page
-    //echo "REdirect";
+    // Redirect to ManageProduct Page if 'id' or 'image_name' is not set
     $_SESSION['unauthorize'] = "<div class='error'>Unauthorized Access.</div>";
-    header('location:' . SITEURL . 'admin/manage-products.php');
 }
+
+// Redirect to ManageProduct with Session Message
+header('location:' . SITEURL . 'admin/manage-products.php');
+?>

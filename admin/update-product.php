@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
                 if ($current_image != "") {
                     // Display the Image
                 ?>
-                    <img src="<?php echo SITEURL; ?>img/food/<?php echo $current_image; ?>" width="150px">
+                    <img src="<?php echo SITEURL; ?>img/product/<?php echo $current_image; ?>" width="150px">
                 <?php
                 } else {
                     // Display Message
@@ -159,9 +159,9 @@ if (isset($_GET['id'])) {
 
                 if ($image_name != "") {
                     $ext = pathinfo($image_name, PATHINFO_EXTENSION);
-                    $image_name = "Food-Name-" . rand(0000, 9999) . '.' . $ext;
+                    $image_name = "Product-Name-" . rand(0000, 9999) . '.' . $ext;
                     $src_path = $_FILES['image']['tmp_name'];
-                    $dest_path = "../img/food/" . $image_name;
+                    $dest_path = "../img/product/" . $image_name;
 
                     $upload = move_uploaded_file($src_path, $dest_path);
 
@@ -172,7 +172,7 @@ if (isset($_GET['id'])) {
                     }
 
                     if ($current_image !== "") {
-                        $remove_path = "../img/food/" . $current_image;
+                        $remove_path = "../img/product/" . $current_image;
 
                         if (file_exists($remove_path)) {
                             $remove = unlink($remove_path);
