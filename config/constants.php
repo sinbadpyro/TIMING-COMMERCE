@@ -3,10 +3,10 @@
 session_start();
 
 //create constants
-define('SITEURL', 'http://localhost/TIMING-COMMERCE/');
+define('SITEURL', 'http://localhost:7080/TIMING-COMMERCE/');
 define('LOCALHOST', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'biggestrapper');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'eco_materiaux');
 //create connection
 

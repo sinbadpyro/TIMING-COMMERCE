@@ -51,7 +51,7 @@
             // Check whether image available or not
             if ($image_name == "") {
                 // Image not Available
-                echo "<div class='error'>Image not Available.</div>";
+                echo "<div class='error'>Image non disponible.</div>";
             } else {
                 // Image Available
                 ?>
@@ -62,7 +62,9 @@
 
             <div class="card-body">
                 <h5 class="card-title"><?php echo $titre; ?></h5>
+                <p class="card-text">€<?php echo $prix; ?> </p>
                 <p class="card-text">
+                    
                     <?php echo $description; ?>
                 </p>
                 <a href="<?php echo $link; ?>" target="_blank" class="btn btn-primary">Voir Plus</a>

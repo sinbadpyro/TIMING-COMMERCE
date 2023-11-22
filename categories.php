@@ -53,7 +53,7 @@
                 }
             } else {
                 // Categories not available
-                echo "<div class='error'>Category not found</div>";
+                echo "<div class='error'>Catégorie non trouvée</div>";
             }
             ?>
 

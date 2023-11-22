@@ -130,7 +130,7 @@ include('partials/menu.php'); ?>
                     // If the image is not uploaded, continue with the existing image
                     if (!$upload) {
                         // Set message
-                        $_SESSION['upload'] = "<div class='error'>Failed to Upload Image.</div>";
+                        $_SESSION['upload'] = "<div class='error'>Échec du téléchargement de l'image.</div>";
                     }
                 }
             }
@@ -148,10 +148,10 @@ include('partials/menu.php'); ?>
             // 4. Redirect to Manage Category with Message
             if ($res2) {
                 // Category Updated
-                $_SESSION['update'] = "<div class='success'>Category Updated Successfully.</div>";
+                $_SESSION['update'] = "<div class='success'>La catégorie a été mise à jour avec succès.</div>";
             } else {
                 // Failed to update category
-                $_SESSION['update'] = "<div class='error'>Failed to Update Category.</div>";
+                $_SESSION['update'] = "<div class='error'>Échec de la mise à jour de la catégorie.</div>";
             }
             header('location:' . SITEURL . 'admin/manage-category.php');
             die(); // Stop the Process

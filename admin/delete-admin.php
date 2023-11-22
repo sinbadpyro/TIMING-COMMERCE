@@ -15,13 +15,13 @@
      if($res == true){
         //Query executed successfully and admin deleted
         //echo "admin deleted";
-        $_SESSION['delete'] = "<div class='success'>admin deleted successfully.</div>";
+        $_SESSION['delete'] = "<div class='success'>admin supprimé avec succès.</div>";
         //redirect to manage admin page
         header('location:'.SITEURL.'admin/manage-admin.php');
      }else{
         //failed to delete admin
         //echo "failed to delete admin";
-        $_SESSION['delete'] = "<div class='error'>failed to delete admin. Try again later</div>";
+        $_SESSION['delete'] = "<div class='error'>échec de la suppression de l'administrateur</div>";
         header('location:'.SITEURL.'admin/manage-admin.php');
      }
 

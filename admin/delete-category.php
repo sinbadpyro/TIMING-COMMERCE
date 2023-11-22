@@ -19,7 +19,7 @@ if (isset($_GET['id']) and isset($_GET['image_name'])) {
         //if failed to remove image then add an error message and stop the process
         if ($remove == false) {
             //set the session message
-            $_SESSION['remove'] = "<div class='error' Failed to remove category Image.</div>";
+            $_SESSION['remove'] = "<div class='error' n'a pas réussi à supprimer l'image de la catégorie.</div>";
             //redirect to manage category page
             header('location:' . SITEURL . 'admin/manage-category.php');
             //stop the process
@@ -36,12 +36,12 @@ if (isset($_GET['id']) and isset($_GET['image_name'])) {
     //Check whether the data is delete from database or not
     if ($res == true) {
         //SEt Success MEssage and REdirect
-        $_SESSION['delete'] = "<div class='success'>Category Deleted Successfully.</div>";// add this code to manage-category.php
+        $_SESSION['delete'] = "<div class='success'>Catégorie supprimée avec succès.</div>";// add this code to manage-category.php
         //Redirect to Manage Category
         header('location:' . SITEURL . 'admin/manage-category.php');
     } else {
         //SEt Fail MEssage and Redirecs
-        $_SESSION['delete'] = "<div class='error'>Failed to Delete Category.</div>";//add this code to manage-category.php
+        $_SESSION['delete'] = "<div class='error'>Échec de la suppression de la catégorie.</div>";//add this code to manage-category.php
         //Redirect to Manage Category
         header('location:' . SITEURL . 'admin/manage-category.php');
     }

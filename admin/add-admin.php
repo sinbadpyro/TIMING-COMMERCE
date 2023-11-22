@@ -63,12 +63,12 @@ if (isset($_POST['submit'])) {
     if ($conn->query($sql) === TRUE) {
         // echo "New record created successfully";
         //create a session variable to display message
-        $_SESSION['add'] = "Admin added sucessfully";
+        $_SESSION['add'] = "L'administrateur a été ajouté avec succès";
         header("location:" . SITEURL . 'admin/manage-admin.php');
     } else {
         // echo "Error: " . $sql . "<br>" . $conn->error;
         //create a session variable to display message
-        $_SESSION['add'] = "Failed to add Admin ";
+        $_SESSION['add'] = "Échec de l'ajout d'un administrateur";
         header("location:" . SITEURL . 'admin/manage-admin.php');
     }
     mysqli_close($conn);

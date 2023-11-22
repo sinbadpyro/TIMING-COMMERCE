@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
                 <?php
                 } else {
                     // Display Message
-                    echo "<div class='error'>Image Not Added.</div>";
+                    echo "<div class='error'>Image non ajoutée.</div>";
                 }
                 ?>
             </div>
@@ -112,7 +112,7 @@ if (isset($_GET['id'])) {
                         }
                     } else {
                         // We do not have categories
-                        echo "<option value='0'>No Category Found</option>";
+                        echo "<option value='0'>Aucune catégorie trouvée</option>";
                     }
                     ?>
                 </select>
@@ -166,7 +166,7 @@ if (isset($_GET['id'])) {
                     $upload = move_uploaded_file($src_path, $dest_path);
 
                     if (!$upload) {
-                        $_SESSION['upload'] = "<div class='error'>Failed to upload the new Image.</div>";
+                        $_SESSION['upload'] = "<div class='error'>Échec du téléchargement d'une nouvelle image.</div>";
                         header('location:' . SITEURL . 'admin/manage-products.php');
                         die();
                     }
@@ -178,7 +178,7 @@ if (isset($_GET['id'])) {
                             $remove = unlink($remove_path);
 
                             if ($remove == false) {
-                                $_SESSION['remove-failed'] = "<div class='error'>Failed to remove the current Image.</div>";
+                                $_SESSION['remove-failed'] = "<div class='error'>Échec de la suppression de l'image actuelle.</div>";
                                 header('location:' . SITEURL . 'admin/manage-products.php');
                                 die();
                             }
@@ -206,10 +206,10 @@ if (isset($_GET['id'])) {
 
 
             if (mysqli_stmt_execute($stmt)) {
-                $_SESSION['update'] = "<div class='success'>Product Updated Successfully.</div>";
+                $_SESSION['update'] = "<div class='success'>Produit mis à jour avec succès.</div>";
                 header('location:' . SITEURL . 'admin/manage-products.php');
             } else {
-                $_SESSION['update'] = "<div class='error'>Failed to update Product: " . mysqli_error($conn) . "</div>";
+                $_SESSION['update'] = "<div class='error'>Échec de la mise à jour du produit: " . mysqli_error($conn) . "</div>";
                 header('location:' . SITEURL . 'admin/manage-products.php');
             }
         }

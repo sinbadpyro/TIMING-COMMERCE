@@ -70,7 +70,7 @@
 
       if($count == 1){
         //user available and login success
-        $_SESSION['login'] = "<div class='success text-center'>Login Sucsessful.</div>";
+        $_SESSION['login'] = "<div class='success text-center'>Connexion réussie.</div>";
         $_SESSION['user'] = $nom_de_utilisateur;
 
         //redirect to Homepage/Dashboard
@@ -78,7 +78,7 @@
       }
       else{
         //user not available and login fail
-        $_SESSION['login'] = "<div class='error text-center'>Username or Password did not match.</div>";
+        $_SESSION['login'] = "<div class='error text-center'>Le nom d'utilisateur ou le mot de passe ne correspond pas.</div>";
         //redirect to Homepage/Dashboard
         header('location:'.SITEURL.'admin/login.php');
       }

@@ -68,7 +68,7 @@ if (isset($_GET['product_id'])) {
                         <h3><?php echo $titre; ?></h3>
                         <input type="hidden" name="produit" value="<?php echo $titre; ?>">
 
-                        <p class="food-price fw-bold">$<?php echo $prix; ?></p>
+                        <p class="food-price fw-bold">€<?php echo $prix; ?></p>
                         <input type="hidden" name="prix" value="<?php echo $prix; ?>">
 
                         <div class="order-label">Quantité</div>
@@ -152,7 +152,7 @@ if (isset($_GET['product_id'])) {
                 header('location:' . SITEURL);
             } else {
                 //Failed to Save Order
-                $_SESSION['order'] = "<div class='error text-center'>Failed to Order product.</div>";
+                $_SESSION['order'] = "<div class='error text-center'>Échec de la commande d'un produit.</div>";
                 header('location:' . SITEURL);
             }
         }

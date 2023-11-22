@@ -19,14 +19,14 @@ if (isset($_GET['id']) && isset($_GET['image_name'])) {
     // Check if the query executed successfully
     if ($res == true) {
         // Product Deleted
-        $_SESSION['delete'] = "<div class='success'>Product Deleted Successfully.</div>";
+        $_SESSION['delete'] = "<div class='success'>Produit supprimé avec succès.</div>";
     } else {
         // Failed to Delete Product
-        $_SESSION['delete'] = "<div class='error'>Failed to Delete Product.</div>";
+        $_SESSION['delete'] = "<div class='error'>Échec de la suppression du produit.</div>";
     }
 } else {
     // Redirect to ManageProduct Page if 'id' or 'image_name' is not set
-    $_SESSION['unauthorize'] = "<div class='error'>Unauthorized Access.</div>";
+    $_SESSION['unauthorize'] = "<div class='error'>Accès non autorisé.</div>";
 }
 
 // Redirect to ManageProduct with Session Message

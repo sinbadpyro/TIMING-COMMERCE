@@ -81,7 +81,7 @@ include('../admin/partials/menu.php'); ?>
                     } else {
                         //WE do not have category
                         ?>
-                        <option value="0">No Category Found</option>
+                        <option value="0">Aucune catégorie trouvée</option>
                         <?php
                     }
 
@@ -149,7 +149,7 @@ include('../admin/partials/menu.php'); ?>
                     $upload = move_uploaded_file($src, $dst);
 
                     if ($upload == false) {
-                        $_SESSION['upload'] = "<div class='error'>Failed to Upload Image.</div>";
+                        $_SESSION['upload'] = "<div class='error'>Échec du téléchargement de l'image.</div>";
                         header('location:' . SITEURL . 'admin/add-product.php');
                         die();
                     }
@@ -169,11 +169,11 @@ include('../admin/partials/menu.php'); ?>
 
             if (mysqli_stmt_execute($stmt)) {
                 // Data inserted successfully
-                $_SESSION['add'] = "<div class='success'>Product Added Successfully.</div>";
+                $_SESSION['add'] = "<div class='success'>Produit ajouté avec succès.</div>";
                 header('location: ' . SITEURL . 'admin/manage-products.php');
             } else {
                 // Failed to insert data
-                $_SESSION['add'] = "<div class='error'>Failed to Add Product: " . mysqli_error($conn) . "</div>";
+                $_SESSION['add'] = "<div class='error'>Échec de l'ajout du produit: " . mysqli_error($conn) . "</div>";
                 header('location: ' . SITEURL . 'admin/manage-products.php');
                 die(); // Stop further processing
             }

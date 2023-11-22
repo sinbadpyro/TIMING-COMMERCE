@@ -121,7 +121,7 @@
 
                         <tr>
                             <td colspan="7">
-                                <div class="error">No Products Added.</div>
+                                <div class="error">Aucun produit ajouté.</div>
                             </td>
                         </tr>
 

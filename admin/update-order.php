@@ -60,7 +60,7 @@ include('partials/menu.php'); ?>
                     <div class="food-menu-desc col text-lg text-sm">
                         <h3><?php echo $produit; ?></h3>
                         <strong><?php echo $produit; ?></strong>
-                        <p class="fw-bold">$<?php echo $prix; ?></p>
+                        <p class="fw-bold">€<?php echo $prix; ?></p>
                         <div class="order-label">Quantité</div>
                         <input type="number" name="qty" class="input-responsive" value="<?php echo $qty; ?>" required>
                     </div>
@@ -155,11 +155,11 @@ include('partials/menu.php'); ?>
             //And REdirect to Manage Order with Message
             if ($res2 == true) {
                 //Updated
-                $_SESSION['update'] = "<div class='success'>Order Updated Successfully.</div>";
+                $_SESSION['update'] = "<div class='success'>Commande mise à jour avec succès.</div>";
                 header('location:' . SITEURL . 'admin/manage-orders.php');
             } else {
                 //Failed to Update
-                $_SESSION['update'] = "<div class='error'>Failed to Update Order.</div>";
+                $_SESSION['update'] = "<div class='error'>Échec de la mise à jour de l'ordre.</div>";
                 header('location:' . SITEURL . 'admin/manage-orders.php');
             }
         }

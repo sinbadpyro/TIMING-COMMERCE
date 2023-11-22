@@ -107,7 +107,7 @@
                     ?>
                         <tr>
                             <td colspan="12">
-                                <div class="error text-center">No Products Added.</div>
+                                <div class="error text-center">Aucun produit ajouté.</div>
                             </td>
                         </tr>
                     <?php

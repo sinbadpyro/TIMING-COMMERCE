@@ -101,7 +101,7 @@
                 //and if the image is not uploaded then we will stop the process and redirect with an error message
                 if ($upload == false) {
                     //set message 
-                    $_SESSION['upload'] = "<div class='error'>Failed to upload image.</div>";
+                    $_SESSION['upload'] = "<div class='error'>Échec du téléchargement de l'image .</div>";
                     //redirect to add category page
                     header('location:' . SITEURL . 'admin/add-category.php');
                     //STop the Process
@@ -120,12 +120,12 @@
             //4. Check whether the query executed or not and data added or not
             if ($res == true) {
                 //Query Executed and Category Added
-                $_SESSION['add'] = "<div class='success'>Category Added Successfully.</div>";
+                $_SESSION['add'] = "<div class='success'>Category Catégorie ajoutée avec succès.</div>";
                 //Redirect to Manage Category Page
                 header('location:' . SITEURL . 'admin/manage-category.php');
             } else {
                 //Failed to Add CAtegory
-                $_SESSION['add'] = "<div class='error'>Failed to Add Category.</div>";
+                $_SESSION['add'] = "<div class='error'>Échec de l'ajout d'une catégorie.</div>";
 
                 //Redirect to Manage Category Page
                 header('location:' . SITEURL . 'admin/add-category.php');

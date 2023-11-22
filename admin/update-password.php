@@ -80,26 +80,26 @@ if (isset($_POST['submit'])) {
                 //check whether the query executed or not
                 if($res2==true){
                     //Display success message
-                    $_SESSION['change-pwd'] = "<div class='success'>Password changed succesfully.</div>";
+                    $_SESSION['change-pwd'] = "<div class='success'>Le mot de passe a été modifié avec succès.</div>";
                     //redirect the user
                     header('location:'.SITEURL.'admin/manage-admin.php');
                 }
                 else{
                     //display error message
-                    $_SESSION['change-pwd'] = "<div class='error'>Failed to change Password.</div>";
+                    $_SESSION['change-pwd'] = "<div class='error'>Échec de la modification du mot de passe.</div>";
                     //redirect the user
                     header('location:'.SITEURL.'admin/manage-admin.php');
                 }
               }else{
                 //redirect to manage admin page with error message
-                $_SESSION['pwd-not-match'] = "<div class='error'>Password did not match.</div>";
+                $_SESSION['pwd-not-match'] = "<div class='error'>Le mot de passe ne correspond pas.</div>";
                 //redirect the user
                 header('location:'.SITEURL.'admin/manage-admin.php');
               }
 
         } else {
             //user does not exist set message and redirect
-            $_SESSION['user-not-found'] = "<div class='error'>User Not Found.</div>";
+            $_SESSION['user-not-found'] = "<div class='error'>Utilisateur non trouvé.</div>";
             //redirect the user
             header('location:'.SITEURL.'admin/manage-admin.php');
 
