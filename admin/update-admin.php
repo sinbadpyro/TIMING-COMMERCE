@@ -1,4 +1,6 @@
-<?php include('./partials/menu.php') ?>
+<?php 
+ob_start();
+include('./partials/menu.php') ?>
     <!--- This is the back button--->
     <a href="javascript:history.go(-1)" class="btn btn-primary mt-3 ms-5" id="back-button">
                 <span class="glyphicon glyphicon-arrow-left"></span> Retour 
@@ -41,29 +43,22 @@
         <form class="form-container mb-3" action="" method="POST" enctype="multipart/form-data">
 
 
+            
             <div class="mb-3">
-                <label class="form-label">Titre</label>
-                <input type="text" class="form-control" name="titre">
-                <div class="form-text">Veuillez entrer le nom de la catégorie</div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Sélectionnez une image</label>
-                <input type="file" class="form-control" name="image">
-                <div class="form-text">Veuillez sélectionner une image</div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Featured</label>
-                <input type="radio" name="featured" value="yes">yes
-                <input type="radio" name="featured" value="no">no
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Active</label>
-                <input type="radio" name="active" value="yes">yes
-                <input type="radio" name="active" value="no">no
+                <label class="form-label">Nom</label>
+                <input type="text" class="form-control" name="nom_complet" value="<?php echo $nom_complet; ?>">
+                <div class="form-text">Veuillez entrer le nom modifie</div>
             </div>
 
-
-            <input class="btn btn-success" type="submit" value="Ajout Categories" name="submit">
+            <div class="mb-3">
+                <label class="form-label">Prenom</label>
+                <input type="text" class="form-control" name="nom_de_utilisateur" value="<?php echo $nom_de_utilisateur; ?>">
+                <div class="form-text">Veuillez entrer le prenom</div>
+            </div>
+          
+            
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <input class="btn btn-success" type="submit" value="Modifier Administrateur" name="submit">
         </form>
     </div>
 

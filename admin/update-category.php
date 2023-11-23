@@ -103,37 +103,35 @@ include('partials/menu.php'); ?>
             $featured = $_POST['featured'];
             $active = $_POST['active'];
 
-            // 2. Updating New Image if selected
-            // Check whether the image is selected or not
-            if (isset($_FILES['image']['name'])) {
-                // Get the Image Details
-                $image_name = $_FILES['image']['name'];
+           // 2. Updating New Image if selected
+// Check whether the image is selected or not
+if (isset($_FILES['image']['name']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+    // Get the Image Details
+    $image_name = $_FILES['image']['name'];
 
-                // Check whether the image is available or not
-                if ($image_name != "") {
-                    // Image Available
+    // A. Upload the New Image
+    // Auto Rename our Image
+    // Get the Extension of our image (jpg, png, gif, etc) e.g. "specialfood1.jpg"
+    $ext = pathinfo($image_name, PATHINFO_EXTENSION);
 
-                    // A. Upload the New Image
-                    // Auto Rename our Image
-                    // Get the Extension of our image (jpg, png, gif, etc) e.g. "specialfood1.jpg"
-                    $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+    // Rename the Image
+    $image_name = "Product_Category_" . rand(000, 999) . '.' . $ext; // e.g. Food_Category_834.jpg
+    $source_path = $_FILES['image']['tmp_name'];
+    $destination_path = "../img/category/" . $image_name;
 
-                    // Rename the Image
-                    $image_name = "Product_Category_" . rand(000, 999) . '.' . $ext; // e.g. Food_Category_834.jpg
-                    $source_path = $_FILES['image']['tmp_name'];
-                    $destination_path = "../img/category/" . $image_name;
+    // Finally Upload the Image
+    $upload = move_uploaded_file($source_path, $destination_path);
 
-                    // Finally Upload the Image
-                    $upload = move_uploaded_file($source_path, $destination_path);
+    // Check whether the image is uploaded or not
+    // If the image is not uploaded, continue with the existing image
+    if (!$upload) {
+        // Set message
+        $_SESSION['upload'] = "<div class='error'>Échec du téléchargement de l'image.</div>";
+    }
+} else {
+    $image_name = $current_image;
+}
 
-                    // Check whether the image is uploaded or not
-                    // If the image is not uploaded, continue with the existing image
-                    if (!$upload) {
-                        // Set message
-                        $_SESSION['upload'] = "<div class='error'>Échec du téléchargement de l'image.</div>";
-                    }
-                }
-            }
             // 3. Update the Database
             $sql2 = "UPDATE categories_de_produits SET 
                         titre = '$titre',
